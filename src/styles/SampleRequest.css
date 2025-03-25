@@ -1,0 +1,15 @@
+.samplerequest-page {
+  padding: 2rem;
+  background-color: #ffffff;
+  color: #032d60;
+  min-height: 100vh;
+}
+
+.samplerequest-page h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.samplerequest-page p {
+  font-size: 1rem;
+}

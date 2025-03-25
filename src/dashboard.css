@@ -1,0 +1,106 @@
+/* Dashboard Styles */
+.dashboard-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-logo {
+  height: 120px;
+  width: auto;
+}
+
+.text-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.notification-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.notification-icon:hover {
+  background-color: #f3f4f6;
+  color: var(--primary-color);
+}
+
+.notification-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* User profile and dropdown */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.user-profile:hover {
+  background-color: #f3f4f6;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color

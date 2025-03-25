@@ -1,0 +1,15 @@
+.salesorder-page {
+  padding: 2rem;
+  background-color: #ffffff;
+  color: #032d60;
+  min-height: 100vh;
+}
+
+.salesorder-page h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.salesorder-page p {
+  font-size: 1rem;
+}

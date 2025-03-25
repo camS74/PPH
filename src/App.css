@@ -1,0 +1,35 @@
+// src/App.jsx
+
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import './styles.css';
+
+// Import pages
+import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import DashboardPage from './pages/DashboardPage';
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      
+      {/* These routes will be implemented later */}
+      <Route path="/inbox" element={<DashboardPage />} />
+      <Route path="/contacts" element={<DashboardPage />} />
+      <Route path="/deals" element={<DashboardPage />} />
+      <Route path="/tasks" element={<DashboardPage />} />
+      <Route path="/inquiries" element={<DashboardPage />} />
+      <Route path="/customers" element={<DashboardPage />} />
+      <Route path="/reports" element={<DashboardPage />} />
+      <Route path="/settings" element={<DashboardPage />} />
+      <Route path="/activities" element={<DashboardPage />} />
+    </Routes>
+  );
+}
+
+export default App;
