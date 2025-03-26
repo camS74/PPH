@@ -1,13 +1,12 @@
 import React, { useRef, useState } from 'react';
 import '../styles/Dashboard.css';
 import logoHeader from '../assets/Logo Header.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   ChevronDown, LogOut, Settings, User,
   FileText, CheckSquare, ClipboardList, ClipboardEdit,
   Inbox, ShoppingCart, PackageCheck, LayoutDashboard, ClipboardType
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 function DashboardPage() {
   const [userImage, setUserImage] = useState(null);
@@ -25,6 +24,19 @@ function DashboardPage() {
     navigate('/');
   };
 
+  const tiles = [
+    { label: "Sample Analysis Request", icon: <FileText />, route: "/sample-analysis-request" },
+    { label: "Sample Analysis Form", icon: <CheckSquare />, route: "/sample-analysis-form" },
+    { label: "Estimation Request", icon: <ClipboardList />, route: "/estimation-request" },
+    { label: "Estimation Form", icon: <ClipboardEdit />, route: "/estimation-form" },
+    { label: "Quotation Form", icon: <FileText />, route: "/quotation-form" },
+    { label: "Sample Request", icon: <Inbox />, route: "/sample-request" },
+    { label: "Sales Order", icon: <ShoppingCart />, route: "/sales-order" },
+    { label: "Material Order", icon: <PackageCheck />, route: "/material-order" },
+    { label: "Design Sheet", icon: <LayoutDashboard />, route: "/design-sheet" },
+    { label: "Job Card", icon: <ClipboardType />, route: "/job-card" },
+  ];
+
   return (
     <div className="dashboard">
       <header className="dashboard-header">
@@ -33,13 +45,7 @@ function DashboardPage() {
           <h1 className="dashboard-title">Admin Dashboard</h1>
         </div>
         <div className="dashboard-profile">
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileRef}
-            style={{ display: 'none' }}
-            onChange={handleImageUpload}
-          />
+          <input type="file" accept="image/*" ref={fileRef} onChange={handleImageUpload} hidden />
           <div className="upload-wrapper" onClick={() => fileRef.current.click()}>
             {userImage ? (
               <img src={userImage} alt="Profile" className="profile-avatar" />
@@ -50,55 +56,21 @@ function DashboardPage() {
           <div className="dropdown-hover">
             <ChevronDown />
             <div className="dropdown-menu">
-              <div className="dropdown-item"><User size={16} /> <span>Profile</span></div>
-              <div className="dropdown-item"><Settings size={16} /> <span>Settings</span></div>
-              <div className="dropdown-item" onClick={handleLogout}><LogOut size={16} /> <span>Logout</span></div>
+              <div className="dropdown-item"><User size={16} /> Profile</div>
+              <div className="dropdown-item"><Settings size={16} /> Settings</div>
+              <div className="dropdown-item" onClick={handleLogout}><LogOut size={16} /> Logout</div>
             </div>
           </div>
         </div>
       </header>
-      <div className="dashboard-grid">
 
-        <Link to="/sample-analysis-request" className="dashboard-tile">
-          <div className="dashboard-icon"><FileText /></div>
-          <div className="dashboard-label">Sample Analysis Request</div>
-        </Link>
-        <Link to="/sample-analysis-form" className="dashboard-tile">
-          <div className="dashboard-icon"><CheckSquare /></div>
-          <div className="dashboard-label">Sample Analysis Form</div>
-        </Link>
-        <Link to="/estimation-request" className="dashboard-tile">
-          <div className="dashboard-icon"><ClipboardList /></div>
-          <div className="dashboard-label">Estimation Request</div>
-        </Link>
-        <Link to="/estimation-form" className="dashboard-tile">
-          <div className="dashboard-icon"><ClipboardEdit /></div>
-          <div className="dashboard-label">Estimation Form</div>
-        </Link>
-        <Link to="/quotation-form" className="dashboard-tile">
-          <div className="dashboard-icon"><FileText /></div>
-          <div className="dashboard-label">Quotation Form</div>
-        </Link>
-        <Link to="/sample-request" className="dashboard-tile">
-          <div className="dashboard-icon"><Inbox /></div>
-          <div className="dashboard-label">Sample Request</div>
-        </Link>
-        <Link to="/sales-order" className="dashboard-tile">
-          <div className="dashboard-icon"><ShoppingCart /></div>
-          <div className="dashboard-label">Sales Order</div>
-        </Link>
-        <Link to="/material-order" className="dashboard-tile">
-          <div className="dashboard-icon"><PackageCheck /></div>
-          <div className="dashboard-label">Material Order</div>
-        </Link>
-        <Link to="/design-sheet" className="dashboard-tile">
-          <div className="dashboard-icon"><LayoutDashboard /></div>
-          <div className="dashboard-label">Design Sheet</div>
-        </Link>
-        <Link to="/job-card" className="dashboard-tile">
-          <div className="dashboard-icon"><ClipboardType /></div>
-          <div className="dashboard-label">Job Card</div>
-        </Link>
+      <div className="dashboard-grid">
+        {tiles.map((tile, index) => (
+          <Link to={tile.route} key={index} className="dashboard-tile">
+            <div className="dashboard-icon">{tile.icon}</div>
+            <div className="dashboard-label">{tile.label}</div>
+          </Link>
+        ))}
       </div>
     </div>
   );
