@@ -1213,6 +1213,7 @@ input.error:focus {
     flex-direction: column;
     gap: 0;
   }
+ }
 /* DASHBOARD HEADER */
 .dashboard-header {
   display: flex;
