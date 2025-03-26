@@ -1152,7 +1152,6 @@ input.error:focus {
   .footer-links {
     gap: 2rem;
   }
-}
 
 @media (max-width: 768px) {
   .site-header {
