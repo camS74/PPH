@@ -1,15 +1,213 @@
-.sampleanalysisrequest-page {
+.sar-container {
+  max-width: 900px;
+  margin: auto;
   padding: 2rem;
-  background-color: #ffffff;
-  color: #032d60;
-  min-height: 100vh;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
 }
 
-.sampleanalysisrequest-page h2 {
+.sar-title {
   font-size: 2rem;
+  color: #032d60;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.sar-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.date-input {
+  width: 150px;
+  padding: 4px 8px;
+  font-size: 1rem;
+  border: none;
+  text-align: center;
+  background-color: transparent;
+  border-bottom: 1px solid #ccc;
+}
+
+.customer-select {
+  font-size: 1rem;
+  width: 300px;
+  padding: 5px 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  margin-top: 8px;
+  background-color: transparent;
+}
+
+.sample-controls {
+  margin: 1.5rem 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: transparent;
+  color: #032d60;
+  border: 1px solid #032d60;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.icon-button:hover {
+  background-color: #032d60;
+  color: #fff;
+}
+
+.sample-form {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+}
+
+.sample-form h3 {
+  margin-bottom: 1rem;
+  color: #032d60;
+}
+
+.ref {
+  color: #5f27cd;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #032d60;
+  margin: 1rem 0 0.5rem;
+}
+
+.file-upload {
   margin-bottom: 1rem;
 }
 
-.sampleanalysisrequest-page p {
+.file-upload label {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.file-upload input[type="file"] {
+  margin-left: 0.5rem;
+}
+
+.file-upload ul {
+  margin-top: 6px;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.remarks {
+  margin: 1rem 0;
+}
+
+.remarks label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.remarks textarea {
+  width: 100%;
+  min-height: 3rem;
+  resize: none;
   font-size: 1rem;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  line-height: 1.5;
+  transition: border 0.2s;
+}
+
+.remarks textarea:focus {
+  border: 1px solid #5f27cd;
+  outline: none;
+}
+
+.pdf-button {
+  background-color: #032d60;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.pdf-button:hover {
+  background-color: #5f27cd;
+}
+
+button[type="submit"] {
+  background-color: #032d60;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #5f27cd;
+}
+
+.sar-success {
+  margin-top: 1rem;
+  color: green;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .sar-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .customer-select,
+  .date-input {
+    width: 100%;
+  }
+}
+
+/* New: SARs Submitted button top-right */
+.sar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sars-submitted-button {
+  background-color: transparent;
+  color: #032d60;
+  border: 1px solid #032d60;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sars-submitted-button:hover {
+  background-color: #032d60;
+  color: white;
 }

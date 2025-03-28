@@ -1,0 +1,96 @@
+.sar-table-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.sar-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sar-table-header h2 {
+  font-size: 1.6rem;
+  color: #032d60;
+}
+
+.back-button {
+  background-color: #032d60;
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.back-button:hover {
+  background-color: #5f27cd;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.export-buttons button {
+  background-color: #032d60;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.export-buttons button:hover {
+  background-color: #5f27cd;
+}
+
+.sar-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+}
+
+.sar-table th,
+.sar-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.sar-table th {
+  background-color: #f0f0f0;
+  color: #032d60;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .sar-table-container {
+    padding: 1rem;
+  }
+
+  .sar-table-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .export-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sar-table {
+    font-size: 0.85rem;
+  }
+}

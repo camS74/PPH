@@ -1,0 +1,55 @@
+.sar-table-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background: #fff;
+}
+
+.sar-table-container h2 {
+  color: #032d60;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.export-buttons button {
+  padding: 8px 12px;
+  background-color: #032d60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.export-buttons button:hover {
+  background-color: #5f27cd;
+}
+
+.sar-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sar-table th,
+.sar-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.sar-table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+  color: #032d60;
+}
