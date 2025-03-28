@@ -1,0 +1,59 @@
+/* src/styles/UserProfileSettings.css */
+
+.profile-settings-container {
+  padding: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.profile-settings-container h2 {
+  font-size: 28px;
+  color: #003366;
+  margin-bottom: 20px;
+}
+
+.logo-upload-box {
+  border: 1px solid #ddd;
+  padding: 20px;
+  max-width: 400px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.logo-upload-box input[type="file"] {
+  margin-bottom: 15px;
+}
+
+.logo-upload-box button {
+  padding: 6px 16px;
+  background-color: #003366;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.logo-upload-box button:hover {
+  background-color: #00549a;
+}
+
+.logo-preview {
+  margin-top: 20px;
+}
+
+.logo-preview img {
+  width: 120px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.user-management-placeholder {
+  margin-top: 50px;
+}
+
+.user-management-placeholder h3 {
+  color: #333;
+  font-size: 20px;
+}

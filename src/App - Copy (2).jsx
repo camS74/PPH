@@ -20,8 +20,7 @@ import SalesOrder from './pages/SalesOrder';
 import MaterialOrder from './pages/MaterialOrder';
 import DesignSheet from './pages/DesignSheet';
 import JobCard from './pages/JobCard';
-import SampleRequestTable from './pages/SampleRequestTable';
-import UserProfileSettings from './pages/UserProfileSettings'; // ✅ NEW
+import SampleRequestTable from './pages/SampleRequestTable'; // ✅ Added route
 
 // Shared layout
 import DashboardLayout from './layouts/DashboardLayout';
@@ -41,10 +40,7 @@ function App() {
       <Route path="/material-order" element={<DashboardLayout><MaterialOrder /></DashboardLayout>} />
       <Route path="/design-sheet" element={<DashboardLayout><DesignSheet /></DashboardLayout>} />
       <Route path="/job-card" element={<DashboardLayout><JobCard /></DashboardLayout>} />
-      <Route path="/sample-request-table" element={<DashboardLayout><SampleRequestTable /></DashboardLayout>} />
-
-      {/* ✅ New route for logo/profile settings */}
-      <Route path="/profile/settings" element={<DashboardLayout><UserProfileSettings /></DashboardLayout>} />
+      <Route path="/sample-request-table" element={<DashboardLayout><SampleRequestTable /></DashboardLayout>} /> {/* ✅ New route */}
 
       {/* Public routes */}
       <Route path="/" element={<LandingPage />} />

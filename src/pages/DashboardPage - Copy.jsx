@@ -1,5 +1,3 @@
-// src/pages/DashboardPage.jsx
-
 import React, { useRef, useState } from 'react';
 import '../styles/Dashboard.css';
 import logoHeader from '../assets/Logo Header.png';
@@ -7,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   ChevronDown, LogOut, Settings, User,
   FileText, CheckSquare, ClipboardList, ClipboardEdit,
-  Inbox, ShoppingCart, PackageCheck, LayoutDashboard, ClipboardType, ImagePlus
+  Inbox, ShoppingCart, PackageCheck, LayoutDashboard, ClipboardType
 } from 'lucide-react';
 
 function DashboardPage() {
@@ -60,9 +58,6 @@ function DashboardPage() {
             <div className="dropdown-menu">
               <div className="dropdown-item"><User size={16} /> Profile</div>
               <div className="dropdown-item"><Settings size={16} /> Settings</div>
-              <Link to="/profile/settings" className="dropdown-item">
-                <ImagePlus size={16} /> Upload Logo
-              </Link>
               <div className="dropdown-item" onClick={handleLogout}><LogOut size={16} /> Logout</div>
             </div>
           </div>
