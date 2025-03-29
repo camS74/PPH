@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/SampleAnalysisRequest.css';
 import html2pdf from 'html2pdf.js';
 import { PlusCircle, MinusCircle, X } from 'lucide-react';
+import adminLogo from '../assets/User Admin Logo.jpg';
 
 function SampleAnalysisRequest() {
   const navigate = useNavigate();
@@ -99,37 +100,153 @@ function SampleAnalysisRequest() {
     }, 1000);
   };
 
-  const handleDownloadPDF = (sample) => {
-    const pdfContent = `
-      <div style="padding: 40px; font-family: Arial, sans-serif; background: white; line-height: 1.6; font-size: 14px; color: #032d60;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-          <div style="width: 120px; height: 60px; background-color: #e0e0e0;">LOGO</div>
+  // Create PDF content for a specific sample
+  const createPdfContent = (sample) => {
+    const fullName =
+      user?.firstName && user?.familyName
+        ? `${user.firstName} ${user.familyName}`
+        : user?.username || "User";
+
+    // Process the remarks to ensure proper text wrapping
+    // Replace new lines with <br> tags for proper line breaks
+    const formattedRemarks = sample.remarks
+      .replace(/\n/g, '<br>')
+      .trim();
+
+    return `
+      <div style="padding: 40px; font-family: Arial, sans-serif; background: white; font-size: 14px; line-height: 1.8; color: black;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <img src="${adminLogo}" alt="Admin Logo" style="width: 120px;" />
+          <h2 style="flex: 1; text-align: center; font-size: 20px; margin: 0;">Sample Analysis Request</h2>
+          <div style="width: 120px;"></div>
         </div>
-        <h2 style="margin-top: 40px; margin-bottom: 24px;">Sample Request</h2>
-        <p style="margin: 12px 0;"><strong>Customer Name:</strong> ${customer}</p>
-        <p style="margin: 12px 0;"><strong>SAR No:</strong> ${sarNumber}</p>
-        <p style="margin: 12px 0;"><strong>Date:</strong> ${submissionDate}</p>
-        <p style="margin: 12px 0;"><strong>Product Description & Remarks:</strong></p>
-        <p style="margin: 12px 0;">${sample.remarks}</p>
+
+        <p style="margin-top: 40px;"><strong>Customer Name:</strong> ${customer}</p>
+        <p><strong>SAR No:</strong> ${sample.id}</p>
+        <p><strong>Date:</strong> ${submissionDate}</p>
+        <p style="margin-top: 24px;"><strong>Product Description & Remarks:</strong></p>
+        <div style="text-align: justify; max-width: 100%; word-wrap: break-word; white-space: normal; border: 1px solid #ddd; padding: 10px; background-color: #f9f9f9; border-radius: 4px;">
+          ${formattedRemarks}
+        </div>
+
         <div style="margin-top: 60px; text-align: right;">
-          <p style="font-weight: bold;">${user.firstName} ${user.familyName}</p>
+          <p style="font-weight: bold;">${fullName}</p>
         </div>
       </div>
     `;
-    const opt = { margin: 0.5, filename: `Sample-${sample.id}.pdf` };
+  };
+
+  // Handle saving PDF file
+  const handleSavePDF = (sample) => {
+    const pdfContent = createPdfContent(sample);
+    
+    const opt = {
+      margin: 0.5,
+      filename: `Sample-${sample.id}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+    };
+
     html2pdf().set(opt).from(pdfContent).save();
+  };
+  
+  // Handle printing PDF directly
+  const handlePrintPDF = (sample) => {
+    const pdfContent = createPdfContent(sample);
+    
+    // Open a new window for printing
+    const printWindow = window.open('', '_blank');
+    
+    if (printWindow) {
+      // Write the content to the new window
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Sample Tag - ${sample.id}</title>
+            <style>
+              body { margin: 0; padding: 0; }
+              @media print {
+                @page { size: letter; margin: 0.5in; }
+              }
+              /* Ensure text wrapping */
+              p, div { 
+                max-width: 100%;
+                word-wrap: break-word;
+                white-space: normal;
+              }
+              /* Style for the remarks box */
+              .remarks-box {
+                border: 1px solid #ddd;
+                padding: 10px;
+                background-color: #f9f9f9;
+                border-radius: 4px;
+                margin-bottom: 20px;
+                text-align: justify;
+                word-wrap: break-word;
+                white-space: normal;
+              }
+            </style>
+          </head>
+          <body>
+            ${pdfContent}
+            <script>
+              window.onload = function() {
+                setTimeout(function() {
+                  window.print();
+                  setTimeout(function() {
+                    window.close();
+                  }, 500);
+                }, 300);
+              }
+            </script>
+          </body>
+        </html>
+      `);
+      
+      printWindow.document.close();
+    } else {
+      alert('Please allow pop-ups to print the tag');
+    }
+  };
+
+  // Add container styles to prevent the page from stretching edge to edge
+  const containerStyle = {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 20px'
+  };
+
+  const headerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '15px 20px',
+    backgroundColor: 'white',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px 8px 0 0',
+    margin: '20px auto 0'
+  };
+
+  const formStyle = {
+    backgroundColor: 'white',
+    padding: '20px',
+    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+    borderRadius: '0 0 8px 8px'
   };
 
   return (
-    <div className="sar-container">
-      <div className="sar-header">
+    <div style={containerStyle}>
+      <div style={headerStyle} className="sar-header-top">
+        <img src={adminLogo} alt="Admin Logo" className="sar-admin-logo" />
         <h1 className="sar-title">Sample Analysis Request</h1>
         <button className="sars-submitted-button" onClick={() => navigate('/sample-request-table')}>
           SARs Submitted
         </button>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={formStyle}>
         <div className="sar-meta-row">
           <div><strong>SAR No:</strong> {sarNumber}</div>
           <div><strong>Date:</strong>
@@ -237,13 +354,23 @@ function SampleAnalysisRequest() {
                     ))}
                   </ul>
                 </div>
-                <button
-                  type="button"
-                  className="pdf-button"
-                  onClick={() => handleDownloadPDF(sample)}
-                >
-                  Print Physical Sample Tag
-                </button>
+                <div style={{ display: 'flex', gap: '10px', marginLeft: '25px' }}>
+                  <button
+                    type="button"
+                    className="pdf-button"
+                    onClick={() => handleSavePDF(sample)}
+                    style={{ backgroundColor: '#4a90e2' }}
+                  >
+                    Save PDF Tag
+                  </button>
+                  <button
+                    type="button"
+                    className="pdf-button"
+                    onClick={() => handlePrintPDF(sample)}
+                  >
+                    Print Tag
+                  </button>
+                </div>
               </>
             )}
           </div>

@@ -31,14 +31,8 @@ const AdminLogoUpload = () => {
         },
       });
 
-      const fullPath = `http://localhost:5000${response.data.path}`;
-      setUploadedLogoUrl(fullPath);
+      setUploadedLogoUrl(`http://localhost:5000${response.data.path}`);
       setMessage('✅ Logo uploaded successfully!');
-
-      // ✅ Save to localStorage for reuse (PDF, header, etc.)
-      const user = JSON.parse(localStorage.getItem('user'));
-      user.logo_path = response.data.path;
-      localStorage.setItem('user', JSON.stringify(user));
     } catch (error) {
       console.error('Logo upload failed:', error);
       setMessage('❌ Upload failed. Please check your token or file type.');

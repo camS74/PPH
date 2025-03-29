@@ -1,88 +1,128 @@
 .sar-table-container {
-  max-width: 1000px;
-  margin: auto;
+  max-width: 1200px;
+  margin: 20px auto;
   padding: 2rem;
   background: #fff;
   font-family: Arial, sans-serif;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 .sar-table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .sar-table-header h2 {
-  font-size: 1.6rem;
+  font-size: 2.0rem;
   color: #032d60;
+  margin: 0;
+  font-weight: 600;
 }
 
 .back-button {
   background-color: #032d60;
   color: #fff;
-  padding: 8px 14px;
+  padding: 10px 16px;
   border: none;
   border-radius: 6px;
+  font-weight: 500;
   cursor: pointer;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .back-button:hover {
   background-color: #5f27cd;
+  transform: translateY(-1px);
 }
 
 .export-buttons {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .export-buttons button {
   background-color: #032d60;
   color: white;
-  padding: 8px 14px;
+  padding: 10px 16px;
   border: none;
   border-radius: 5px;
   font-weight: 500;
   cursor: pointer;
   transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
 }
 
 .export-buttons button:hover {
   background-color: #5f27cd;
+  transform: translateY(-1px);
 }
 
 .sar-table {
   width: 100%;
   border-collapse: collapse;
-  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .sar-table th,
 .sar-table td {
   border: 1px solid #ddd;
-  padding: 0.75rem;
+  padding: 0.85rem;
   text-align: center;
   font-size: 0.95rem;
 }
 
 .sar-table th {
-  background-color: #f0f0f0;
+  background-color: #d4e6f9;
   color: #032d60;
   font-weight: 600;
+  text-align: center;
+}
+
+.sar-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.sar-table tr:hover {
+  background-color: #f0f7ff;
+}
+
+.sar-table td:nth-child(1),
+.sar-table td:nth-child(5) {
+  text-align: center;
+  font-weight: 500;
+}
+
+.sar-table td:nth-child(6) {
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {
   .sar-table-container {
     padding: 1rem;
+    margin: 10px;
   }
 
   .sar-table-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+
+  .sar-table-header h2 {
+    font-size: 1.4rem;
   }
 
   .export-buttons {
@@ -92,5 +132,10 @@
 
   .sar-table {
     font-size: 0.85rem;
+  }
+  
+  .sar-table th,
+  .sar-table td {
+    padding: 0.6rem;
   }
 }

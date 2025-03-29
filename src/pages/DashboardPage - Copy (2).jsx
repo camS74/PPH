@@ -2,8 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import '../styles/Dashboard.css';
-import adminLogo from '../assets/User Admin Logo.jpg'; // ✅ Admin logo
-
+import logoHeader from '../assets/Logo Header.png';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   ChevronDown, LogOut, Settings, User,
@@ -42,28 +41,11 @@ function DashboardPage() {
 
   return (
     <div className="dashboard">
-      <header
-        className="dashboard-header"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '20px 30px',
-        }}
-      >
-        {/* ✅ Admin Logo and Title */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-          <img
-            src={adminLogo}
-            alt="ProPackHub Admin Logo"
-            style={{ width: '180px', height: '60px', objectFit: 'contain' }}
-          />
-          <h1 className="dashboard-title" style={{ color: '#002f6c', margin: 0 }}>
-            Admin Dashboard
-          </h1>
+      <header className="dashboard-header">
+        <div className="dashboard-header-left">
+          <img src={logoHeader} alt="ProPackHub" className="dashboard-logo" />
+          <h1 className="dashboard-title">Admin Dashboard</h1>
         </div>
-
-        {/* ✅ Profile section */}
         <div className="dashboard-profile">
           <input type="file" accept="image/*" ref={fileRef} onChange={handleImageUpload} hidden />
           <div className="upload-wrapper" onClick={() => fileRef.current.click()}>
