@@ -90,7 +90,7 @@ function SampleRequestTable() {
   return (
     <div className="sar-table-container">
       <div className="sar-table-header">
-        <h2>Sample Request Submitted</h2>
+        <h2>Samples Requests Submitted</h2>
         <button className="back-button" onClick={() => navigate('/sample-analysis-request')}>
           ← Back to SAR Form
         </button>
