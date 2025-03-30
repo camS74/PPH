@@ -111,12 +111,15 @@ body {
   align-items: center;
   gap: 8px;
   transition: background-color 0.2s, font-weight 0.2s, color 0.2s;
+  text-decoration: none; /* Add this line to remove underlines */
 }
 
+/* Also make sure hover states don't add underlines */
 .dropdown-item:hover {
   background-color: #f9f0ff;
   font-weight: 600;
   color: var(--hover-purple);
+  text-decoration: none; /* Add this line to remove underlines on hover */
 }
 
 .dashboard-grid {
@@ -137,12 +140,15 @@ body {
   transition: all 0.2s ease;
   cursor: pointer;
   color: var(--text-darkblue);
+  text-decoration: none; /* Add this line to remove underlines */
 }
 
+/* Also add this to ensure hover states don't add underlines */
 .dashboard-tile:hover {
   background-color: #eef2ff;
   color: var(--hover-purple);
   transform: scale(1.03);
+  text-decoration: none; /* Add this line to remove underlines on hover */
 }
 
 .dashboard-icon {
@@ -153,4 +159,14 @@ body {
 .dashboard-label {
   font-size: 1rem;
   font-weight: 500;
+}
+.upload-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.9rem;
+  color: var(--text-darkblue);
 }

@@ -56,7 +56,7 @@ function DashboardPage() {
           <img
             src={adminLogo}
             alt="ProPackHub Admin Logo"
-            style={{ width: '180px', height: '60px', objectFit: 'contain' }}
+            style={{ width: '180px', height: '180px', objectFit: 'contain' }}
           />
           <h1 className="dashboard-title" style={{ color: '#002f6c', margin: 0 }}>
             Admin Dashboard
@@ -70,7 +70,7 @@ function DashboardPage() {
             {userImage ? (
               <img src={userImage} alt="Profile" className="profile-avatar" />
             ) : (
-              <div className="upload-placeholder">Upload Image</div>
+              <div className="upload-placeholder">Upload Your Image</div>
             )}
           </div>
           <div className="dropdown-hover">

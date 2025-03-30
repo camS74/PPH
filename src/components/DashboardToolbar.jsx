@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/DashboardToolbar.css';
 
-function DashboardButton() {
+function DashboardToolbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -16,4 +16,4 @@ function DashboardButton() {
   );
 }
 
-export default DashboardButton;
+export default DashboardToolbar;
