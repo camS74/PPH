@@ -22,14 +22,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
-app.get('/api/countries/test', (req, res) => {
-  res.json({ message: 'Countries route is working' });
-});
-
 // Routes
-app.get('/test', (req, res) => {
-  res.json({ message: 'Test route is working' });
-});
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/logo', logoRoutes);

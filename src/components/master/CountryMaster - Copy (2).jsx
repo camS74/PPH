@@ -11,14 +11,37 @@ const CountryMaster = () => {
   const fetchCountries = async () => {
     try {
       setLoading(true);
-      setError(null);
       const response = await axios.get('http://localhost:5000/api/countries');
-      
-      // Simply use the data as-is since it already has the correct format
-      setCountries(response.data);
+
+      console.log('Raw response:', response);
+      console.log('Response data:', response.data);
+      console.log('Countries count:', response.data.length);
+
+      // Use only valid country names
+      const validCountries = response.data.map((country, index) => {
+        if (typeof country === 'string') {
+          return {
+            id: index + 1,
+            name: country,
+          };
+        }
+
+        return {
+          id: country.id || index + 1,
+          name: country.name || country.country_name || `Country ${index + 1}`,
+        };
+      });
+
+      console.log('Processed countries:', validCountries);
+      setCountries(validCountries);
+      setError(null);
     } catch (err) {
-      console.error('Error fetching countries:', err);
-      setError('Failed to fetch countries. Please try again.');
+      console.error('Detailed fetch error:', {
+        message: err.message,
+        response: err.response,
+        request: err.request,
+      });
+      setError(err.message || 'Failed to fetch countries');
     } finally {
       setLoading(false);
     }
@@ -29,13 +52,14 @@ const CountryMaster = () => {
 
     try {
       setLoading(true);
-      setError(null);
-      await axios.post('http://localhost:5000/api/countries', { name: newCountry });
+      const response = await axios.post('http://localhost:5000/api/countries', { name: newCountry });
+      console.log('Added country:', response.data);
+
       setNewCountry('');
-      fetchCountries(); // Refresh the list
+      fetchCountries();
     } catch (err) {
       console.error('Error adding country:', err);
-      setError('Failed to add country. Please try again.');
+      setError(err.message || 'Error adding country');
     } finally {
       setLoading(false);
     }
@@ -44,12 +68,11 @@ const CountryMaster = () => {
   const handleDelete = async (id) => {
     try {
       setLoading(true);
-      setError(null);
       await axios.delete(`http://localhost:5000/api/countries/${id}`);
-      fetchCountries(); // Refresh the list
+      fetchCountries();
     } catch (err) {
-      console.error('Error deleting country:', err);
-      setError('Failed to delete country. Please try again.');
+      console.error('Delete error:', err);
+      setError(err.message || 'Failed to delete country');
     } finally {
       setLoading(false);
     }
@@ -63,20 +86,20 @@ const CountryMaster = () => {
     <div className="master-section">
       <h2>Country List</h2>
 
-      {/* Error display */}
+      {/* Error Message */}
       {error && (
-        <div style={{ 
-          color: 'white', 
-          backgroundColor: '#dc3545', 
-          padding: '10px', 
+        <div style={{
+          color: 'white',
+          backgroundColor: 'red',
+          padding: '10px',
           marginBottom: '15px',
-          borderRadius: '5px'
+          borderRadius: '5px',
         }}>
-          {error}
+          Error: {error}
         </div>
       )}
 
-      {/* Add country form */}
+      {/* Top Section: Form + Import Buttons */}
       <div className="master-form-wrapper">
         <div className="master-form">
           <input
@@ -86,8 +109,8 @@ const CountryMaster = () => {
             placeholder="Enter country name"
             disabled={loading}
           />
-          <button 
-            onClick={handleAdd} 
+          <button
+            onClick={handleAdd}
             disabled={loading || newCountry.trim() === ''}
           >
             {loading ? 'Adding...' : 'Add Country'}
@@ -101,10 +124,10 @@ const CountryMaster = () => {
         </div>
       </div>
 
-      {/* Loading indicator */}
-      {loading && <p>Loading...</p>}
+      {/* Loading State */}
+      {loading && <p>Loading countries...</p>}
 
-      {/* Countries table */}
+      {/* Table */}
       {!loading && countries.length > 0 && (
         <table className="master-table">
           <thead>
@@ -116,11 +139,11 @@ const CountryMaster = () => {
           </thead>
           <tbody>
             {countries.map((country, index) => (
-              <tr key={country.id}>
+              <tr key={country.id || `country-${index}`}>
                 <td>{index + 1}</td>
                 <td>{country.name}</td>
                 <td>
-                  <button 
+                  <button
                     onClick={() => handleDelete(country.id)}
                     disabled={loading}
                   >
@@ -133,12 +156,12 @@ const CountryMaster = () => {
         </table>
       )}
 
-      {/* Empty state */}
+      {/* Empty State */}
       {!loading && countries.length === 0 && (
-        <div style={{ 
-          textAlign: 'center', 
-          color: '#666', 
-          padding: '20px' 
+        <div style={{
+          textAlign: 'center',
+          color: '#666',
+          padding: '20px',
         }}>
           No countries found
         </div>
