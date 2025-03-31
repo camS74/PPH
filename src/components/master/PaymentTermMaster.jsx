@@ -7,9 +7,11 @@ const PaymentTermMaster = () => {
   const [newTerm, setNewTerm] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const API_URL = '/api/payment-terms'; // ✅ Use relative path with Vite proxy
+
   const fetchTerms = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/payment-terms');
+      const response = await axios.get(API_URL);
       setTerms(response.data);
     } catch (err) {
       console.error('Error fetching terms:', err);
@@ -20,7 +22,7 @@ const PaymentTermMaster = () => {
     if (newTerm.trim() === '') return;
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/payment-terms', { name: newTerm });
+      await axios.post(API_URL, { name: newTerm });
       setNewTerm('');
       fetchTerms();
     } catch (err) {
@@ -32,7 +34,7 @@ const PaymentTermMaster = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/payment-terms/${id}`);
+      await axios.delete(`${API_URL}/${id}`);
       fetchTerms();
     } catch (err) {
       console.error('Error deleting term:', err);

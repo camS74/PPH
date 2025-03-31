@@ -8,7 +8,7 @@ const SectorMaster = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const API_URL = 'http://localhost:5000/api/customer-sectors';
+ const API_URL = '/api/customer-sectors';
 
   const fetchSectors = async () => {
     try {
