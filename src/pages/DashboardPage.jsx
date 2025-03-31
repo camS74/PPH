@@ -1,9 +1,6 @@
-// src/pages/DashboardPage.jsx
-
 import React, { useRef, useState } from 'react';
 import '../styles/Dashboard.css';
 import adminLogo from '../assets/User Admin Logo.jpg'; // ✅ Admin logo
-
 import { Link, useNavigate } from 'react-router-dom';
 import {
   ChevronDown, LogOut, Settings, User,
@@ -38,6 +35,7 @@ function DashboardPage() {
     { label: "Material Order", icon: <PackageCheck />, route: "/material-order" },
     { label: "Design Sheet", icon: <LayoutDashboard />, route: "/design-sheet" },
     { label: "Job Card", icon: <ClipboardType />, route: "/job-card" },
+    { label: "Master Data", icon: <Settings />, route: "/master-data" }, // ✅ New tile for Master Data
   ];
 
   return (

@@ -1,4 +1,3 @@
-// index.js
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -6,7 +5,10 @@ import pool from './config/db.js';
 
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-import logoRoutes from './routes/logoRoutes.js'; // ✅ Logo route
+import logoRoutes from './routes/logoRoutes.js';
+import countryRoutes from './routes/countries.js';
+import paymentTermRoutes from './routes/paymentTerms.js'; // ✅ NEW
+import customerSectorsRoutes from './routes/customerSectors.js'; // ✅ NEW
 
 dotenv.config();
 
@@ -18,12 +20,15 @@ console.log('🧪 Connecting to:', process.env.DATABASE_URL);
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static('uploads')); // ✅ Serve static logo files
+app.use('/uploads', express.static('uploads'));
 
 // Routes
-app.use('/api/auth', authRoutes);     // /register & /login
-app.use('/api/users', userRoutes);    // /create
-app.use('/api/logo', logoRoutes);     // /upload-logo
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/logo', logoRoutes);
+app.use('/api/countries', countryRoutes);
+app.use('/api/payment-terms', paymentTermRoutes); // ✅ NEW
+app.use('/api/customer-sectors', customerSectorsRoutes); // ✅ NEW
 
 // Test route
 app.get('/', (req, res) => {

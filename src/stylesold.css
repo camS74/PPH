@@ -1323,3 +1323,45 @@ input.error:focus {
   font-size: 0.95rem;
   color: #1f2937;
 }
+/* Form field styling - Light blue background for all input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="tel"],
+input[type="number"],
+input[type="file"],
+select,
+textarea {
+  background-color: #f0f7ff; /* Light blue background */
+  border: 1px solid #ddd;
+  transition: all 0.2s ease;
+}
+
+/* Maintain the light blue background when focused, but add a highlight border */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus,
+select:focus,
+textarea:focus {
+  background-color: #f0f7ff; /* Keep light blue background */
+  border-color: #4a6cf7; /* Primary color border for focus state */
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+  outline: none;
+}
+
+/* Make sure the date inputs and selects have the same styling */
+.date-input,
+.customer-select {
+  background-color: #f0f7ff !important; /* Light blue background with higher specificity */
+}
+
+/* Checkbox container styling for consistency */
+.checkbox-group,
+.checkbox-wrapper {
+  background-color: transparent; /* Keep transparent background for checkbox containers */
+}
