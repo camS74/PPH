@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
-import { verifyToken } from '../middleware/authMiddleware.js';
+import authenticateToken from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/upload-logo', verifyToken, upload.single('logo'), async (req, res) => {
+router.post('/upload-logo', authenticateToken, upload.single('logo'), async (req, res) => {
   try {
     if (req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Only admins can upload a logo.' });
