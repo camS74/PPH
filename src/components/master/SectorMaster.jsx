@@ -9,7 +9,7 @@ const SectorMaster = () => {
 
   const fetchSectors = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/customer-sectors');
+      const response = await axios.get('http://localhost:5000/api/customer-sectors'); // fixed
       setSectors(response.data);
     } catch (err) {
       console.error('Error fetching sectors:', err);
@@ -20,7 +20,7 @@ const SectorMaster = () => {
     if (newSector.trim() === '') return;
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/customer-sectors', { name: newSector });
+      await axios.post('http://localhost:5000/api/customer-sectors', { name: newSector }); // fixed
       setNewSector('');
       fetchSectors();
     } catch (err) {
@@ -32,10 +32,10 @@ const SectorMaster = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/customer-sectors/${id}`);
+      await axios.delete(`http://localhost:5000/api/customer-sectors/${id}`); // fixed
       fetchSectors();
     } catch (err) {
-      console.error('Error deleting sector:', err);
+      console.error('Delete error:', err);
     }
   };
 
@@ -46,24 +46,34 @@ const SectorMaster = () => {
   return (
     <div className="master-section">
       <h2>Customer Sectors</h2>
-      <div className="master-form">
-        <input
-          type="text"
-          placeholder="Enter sector name"
-          value={newSector}
-          onChange={(e) => setNewSector(e.target.value)}
-        />
-        <button onClick={handleAdd} disabled={loading}>
-          {loading ? 'Adding...' : 'Add'}
-        </button>
+
+      {/* NEW layout: form on left, import buttons on right */}
+      <div className="master-form-wrapper">
+        <div className="master-form">
+          <input
+            type="text"
+            value={newSector}
+            onChange={(e) => setNewSector(e.target.value)}
+            placeholder="Enter sector name"
+          />
+          <button onClick={handleAdd} disabled={loading}>
+            {loading ? 'Adding...' : 'Add'}
+          </button>
+        </div>
+
+        <div className="import-buttons-vertical">
+          <button className="import-btn">Import from Excel</button>
+          <button className="import-btn">Copy & Paste</button>
+          <button className="import-btn">Download Template</button>
+        </div>
       </div>
 
       <table className="master-table">
         <thead>
           <tr>
             <th>#</th>
-            <th>Sector Name</th>
-            <th>Action</th>
+            <th>Sector</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>

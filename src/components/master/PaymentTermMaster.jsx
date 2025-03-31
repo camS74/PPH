@@ -35,7 +35,7 @@ const PaymentTermMaster = () => {
       await axios.delete(`http://localhost:5000/api/payment-terms/${id}`);
       fetchTerms();
     } catch (err) {
-      console.error('Delete error:', err);
+      console.error('Error deleting term:', err);
     }
   };
 
@@ -46,24 +46,29 @@ const PaymentTermMaster = () => {
   return (
     <div className="master-section">
       <h2>Payment Terms</h2>
-
-      <div className="master-form">
-        <input
-          type="text"
-          value={newTerm}
-          onChange={(e) => setNewTerm(e.target.value)}
-          placeholder="Enter payment term"
-        />
-        <button onClick={handleAdd} disabled={loading}>
-          {loading ? 'Adding...' : 'Add'}
-        </button>
+      <div className="master-form-wrapper">
+        <div className="master-form">
+          <input
+            type="text"
+            placeholder="Enter payment term"
+            value={newTerm}
+            onChange={(e) => setNewTerm(e.target.value)}
+          />
+          <button onClick={handleAdd} disabled={loading}>
+            {loading ? 'Adding...' : 'Add'}
+          </button>
+        </div>
+        <div className="import-buttons-vertical">
+          <button className="import-btn">Import from Excel</button>
+          <button className="import-btn">Copy & Paste</button>
+          <button className="import-btn">Download Template</button>
+        </div>
       </div>
-
       <table className="master-table">
         <thead>
           <tr>
             <th>#</th>
-            <th>Payment Term</th>
+            <th>Term</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -79,12 +84,6 @@ const PaymentTermMaster = () => {
           ))}
         </tbody>
       </table>
-
-      <div className="import-section">
-        <button>Import from Excel</button>
-        <button>Copy & Paste</button>
-        <button>Download Template</button>
-      </div>
     </div>
   );
 };

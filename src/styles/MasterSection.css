@@ -3,7 +3,7 @@
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
 }
 
@@ -13,10 +13,18 @@
   margin-bottom: 20px;
 }
 
+/* Wraps input + Add button on the left, and vertical import buttons on the right */
+.master-form-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+/* Left-side form */
 .master-form {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
 }
 
 .master-form input {
@@ -40,6 +48,29 @@
   background-color: #00367a;
 }
 
+/* Right-side vertical buttons */
+.import-buttons-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.import-btn {
+  padding: 10px 16px;
+  background-color: #007bff;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.import-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Table styling */
 .master-table {
   width: 100%;
   border-collapse: collapse;
@@ -69,24 +100,4 @@
 
 .master-table button:hover {
   background-color: darkred;
-}
-
-.import-section {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.import-section button {
-  background-color: #0077cc;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.import-section button:hover {
-  background-color: #005fa3;
 }
